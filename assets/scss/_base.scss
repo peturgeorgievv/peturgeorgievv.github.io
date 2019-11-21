@@ -13,6 +13,10 @@ h1, h2, h3, h4, h5, h6  {
     color: $color;
 }
 
+.star-mine {
+    width: 20px;
+}
+
 a {
     color: $color-2;
     @include transition (all 0.4s ease-in-out);
