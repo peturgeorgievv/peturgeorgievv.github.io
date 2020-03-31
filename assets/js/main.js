@@ -1,70 +1,33 @@
 jQuery(document).ready(function($) {
 
-
-    /*======= Skillset *=======*/
+    /* ======= Scrollspy ======= */
+    $('body').scrollspy({ target: '#header', offset: 400});
     
-    $('.level-bar-inner').css('width', '0');
+    /* ======= Fixed header when scrolled ======= */
     
-    $(window).on('load', function() {
-
-        $('.level-bar-inner').each(function() {
-        
-            var itemWidth = $(this).data('level');
-            
-            $(this).animate({
-                width: itemWidth
-            }, 800);
-            
-        });
-
+    $(window).bind('scroll', function() {
+         if ($(window).scrollTop() > 50) {
+             $('#header').addClass('navbar-fixed-top');
+         }
+         else {
+             $('#header').removeClass('navbar-fixed-top');
+         }
     });
-    
-    /* Bootstrap Tooltip for Skillset */
-    $('.level-label').tooltip();
-    
-    
-    /* jQuery RSS - https://github.com/sdepold/jquery-rss */
-    
-    $("#rss-feeds").rss(
-    
-        //Change this to your own rss feeds
-        "https://feeds.feedburner.com/TechCrunch/startups",
+   
+    /* ======= ScrollTo ======= */
+    $('a.scrollto').on('click', function(e){
         
-        {
-        // how many entries do you want?
-        // default: 4
-        // valid values: any integer
-        limit: 3,
+        //store hash
+        var target = this.hash;
+                
+        e.preventDefault();
         
-        // the effect, which is used to let the entries appear
-        // default: 'show'
-        // valid values: 'show', 'slide', 'slideFast', 'slideSynced', 'slideFastSynced'
-        effect: 'slideFastSynced',
-        
-        // will request the API via https
-	    // default: false
-	    // valid values: false, true
-	    ssl: true,
-        
-        // outer template for the html transformation
-        // default: "<ul>{entries}</ul>"
-        // valid values: any string
-        layoutTemplate: "<div class='items'>{entries}</div>",
-        
-        // inner template for each entry
-        // default: '<li><a href="{url}">[{author}@{date}] {title}</a><br/>{shortBodyPlain}</li>'
-        // valid values: any string
-        entryTemplate: '<div class="item"><h3 class="title"><a href="{url}" target="_blank">{title}</a></h3><div><p>{shortBodyPlain}</p><a class="more-link" href="{url}" target="_blank"><i class="fas fa-external-link-alt"></i>Read more</a></div></div>'
-        
-        }
-    );
-    
-    /* Github Calendar - https://github.com/IonicaBizau/github-calendar */
-    new GitHubCalendar("#github-graph", "IonicaBizau");
-    
-    
-    /* Github Activity Feed - https://github.com/caseyscarborough/github-activity */
-    GitHubActivity.feed({ username: "mdo", selector: "#ghfeed" });
-
+		$('body').scrollTo(target, 800, {offset: -70, 'axis':'y', easing:'easeOutQuad'});
+        //Collapse mobile menu after clicking
+		if ($('.navbar-collapse').hasClass('show')){
+			$('.navbar-collapse').removeClass('show');
+		}
+		
+	});
 
 });
