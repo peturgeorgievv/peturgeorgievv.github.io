@@ -188,6 +188,11 @@ pre code {
   padding: 15px 10px;
 }
 
+.header .main-nav .navbar-collapse.show .nav .nav-item .nav-link.active {
+  color: #17baef;
+}
+
+
 .header .main-nav .nav .nav-item .nav-link.active {
   color: #ffffff;
   background: none;
